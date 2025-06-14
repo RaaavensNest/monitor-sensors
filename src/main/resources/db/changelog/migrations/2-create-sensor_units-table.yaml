@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2-create-sensor_units-table
+      author: Maksim Krutalevich
+      changes:
+        - createTable:
+            tableName: sensor_units
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+        - insert:
+            tableName: sensor_units
+            columns:
+              - column:
+                  name: name
+                  value: 'bar'
+        - insert:
+            tableName: sensor_units
+            columns:
+              - column:
+                  name: name
+                  value: 'voltage'
+        - insert:
+            tableName: sensor_units
+            columns:
+              - column:
+                  name: name
+                  value: '°С'
+        - insert:
+            tableName: sensor_units
+            columns:
+              - column:
+                  name: name
+                  value: '%'
