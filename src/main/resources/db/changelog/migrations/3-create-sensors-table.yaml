@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3-create-sensors-table
+      author: Maksim Krutalevich
+      changes:
+        - createTable:
+            tableName: sensors
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: model
+                  type: VARCHAR(15)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: range_from
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: range_to
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: location
+                  type: VARCHAR(40)
+              - column:
+                  name: description
+                  type: VARCHAR(200)
+              - column:
+                  name: type_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: unit_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: sensors
+            baseColumnNames: type_id
+            constraintName: sensors_sensor_types_fkey
+            referencedTableName: sensor_types
+            referencedColumnNames: id
+            onDelete: RESTRICT
+
+        - addForeignKeyConstraint:
+            baseTableName: sensors
+            baseColumnNames: unit_id
+            constraintName: sensors_sensor_units_fkey
+            referencedTableName: sensor_units
+            referencedColumnNames: id
+            onDelete: SET NULL
+
+        - sql:
+            sql: |
+              ALTER TABLE sensors 
+                ADD CONSTRAINT chk_name_valid CHECK (LENGTH(name) >= 3),
+                ADD CONSTRAINT chk_model_valid CHECK (LENGTH(model) > 0),
+                ADD CONSTRAINT chk_range_valid CHECK (range_from < range_to);

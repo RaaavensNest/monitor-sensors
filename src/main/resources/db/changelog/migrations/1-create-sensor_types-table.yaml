@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-sensor_types-tables
+      author: Maksim Krutalevich
+      changes:
+        - createTable:
+            tableName: sensor_types
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+        - insert:
+            tableName: sensor_types
+            columns:
+              - column:
+                  name: name
+                  value: Pressure
+        - insert:
+            tableName: sensor_types
+            columns:
+              - column:
+                  name: name
+                  value: Voltage
+        - insert:
+            tableName: sensor_types
+            columns:
+              - column:
+                  name: name
+                  value: Temperature
+        - insert:
+            tableName: sensor_types
+            columns:
+              - column:
+                  name: name
+                  value: Humidity
