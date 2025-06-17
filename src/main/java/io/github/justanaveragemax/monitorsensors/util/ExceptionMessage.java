@@ -9,7 +9,9 @@ public enum ExceptionMessage {
   SENSOR_NOT_FOUND("No sensor found with id '%s'"),
   DICTIONARY_VALUE_NOT_FOUND("%s with name '%s' not found"),
   INVALID_DICTIONARY_VALUE("Invalid %s: '%s'. Allowed values: [%s]"),
-  UNKNOWN_DICTIONARY_NAME("Unknown dictionary name provided: %s");
+  UNKNOWN_DICTIONARY_NAME("Unknown dictionary name provided: %s"),
+  USERNAME_NOT_FOUND("User with email %s not found"),
+  INVALID_CREDENTIALS_PROVIDED("Invalid credentials provided");
 
   private final String message;
 

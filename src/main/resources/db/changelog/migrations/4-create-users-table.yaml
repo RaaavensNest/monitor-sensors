@@ -1,0 +1,67 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4-create-users-table
+      author: Maksim Krutalevich
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: Maksim
+              - column:
+                  name: last_name
+                  value: Krutalevich
+              - column:
+                  name: email
+                  value: admin@example.com
+              - column:
+                  name: password
+                  value: $2a$10$FEql.E2Le8aBpi/FzaBIl..fpexyIVMON91Eb3x5nNPgBnh4W/01e
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: John
+              - column:
+                  name: last_name
+                  value: Doe
+              - column:
+                  name: email
+                  value: j.doe@example.com
+              - column:
+                  name: password
+                  value: $2a$10$FEql.E2Le8aBpi/FzaBIl..fpexyIVMON91Eb3x5nNPgBnh4W/01e

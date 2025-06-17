@@ -43,7 +43,7 @@ public class SensorServiceImpl implements SensorService {
   public PagedModel<SensorResponse> findAll(final String name,
                                             final String model,
                                             @NonNull final Pageable pageable) {
-    log.info("Fetching sensors with parameters: name ={}, model ={}, page={}, size={}, sort='{}'",
+    log.info("Fetching sensors with parameters: name={}, model={}, page={}, size={}, sort='{}'",
         name,
         model,
         pageable.getPageNumber(),

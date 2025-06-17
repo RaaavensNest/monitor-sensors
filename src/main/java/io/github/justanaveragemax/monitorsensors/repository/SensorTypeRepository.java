@@ -10,6 +10,4 @@ public interface SensorTypeRepository extends JpaRepository<SensorType, Long> {
 
   Optional<SensorType> findByName(String name);
 
-  boolean existsByNameIgnoreCase(String name);
-
 }

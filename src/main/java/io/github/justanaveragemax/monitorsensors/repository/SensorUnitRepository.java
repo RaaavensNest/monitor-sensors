@@ -10,6 +10,4 @@ public interface SensorUnitRepository extends JpaRepository<SensorUnit, Long> {
 
   Optional<SensorUnit> findByName(String name);
 
-  boolean existsByNameIgnoreCase(String name);
-
 }
