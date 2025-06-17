@@ -27,6 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
   @Override
   @Transactional
   public AuthenticationResponse login(@NonNull final AuthenticationRequest request) {
+    log.info("Searching for user with email '{}'", request.getEmail());
 
     final User user = userService.findByEmail(request.getEmail()).orElseThrow(() -> {
       final String exceptionMessage = ExceptionMessage.USERNAME_NOT_FOUND.format(request.getEmail());
