@@ -5,3 +5,9 @@ databaseChangeLog:
       file: db/changelog/migrations/2-create-sensor_units-table.yaml
   - include:
       file: db/changelog/migrations/3-create-sensors-table.yaml
+  - include:
+      file: db/changelog/migrations/4-create-users-table.yaml
+  - include:
+      file: db/changelog/migrations/5-create-roles-table.yaml
+  - include:
+      file: db/changelog/migrations/6-create-users_roles-table.yaml

@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -27,6 +28,11 @@ public class GlobalExceptionHandler {
   @ResponseStatus(HttpStatus.NOT_FOUND)
   public ResponseEntity<ApplicationErrorResponse> handleEntityNotFoundException(EntityNotFoundException ex){
     return handleGenericException(HttpStatus.NOT_FOUND, ex);
+  }
+
+  @ExceptionHandler(BadCredentialsException.class)
+  public ResponseEntity<ApplicationErrorResponse> handleBadCredentialsException(BadCredentialsException ex){
+    return handleGenericException(HttpStatus.BAD_REQUEST, ex);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)

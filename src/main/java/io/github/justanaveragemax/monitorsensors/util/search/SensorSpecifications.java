@@ -15,7 +15,7 @@ public class SensorSpecifications {
       }
 
       final Expression<String> expression = cb.lower(root.get(field.getValue()));
-      final String pattern = String.format("%%%s%%", value);
+      final String pattern = String.format("%%%s%%", value.toLowerCase());
       return cb.like(expression, pattern);
     };
   }
