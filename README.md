@@ -78,11 +78,11 @@ You can override the defaults in `docker-compose.yaml` or using a `.env` file:
 
 ```
 .
-├── src/                    # Source code
-├── liquibase/              # Database migrations
-├── Dockerfile              # App build instructions
-├── docker-compose.yaml     # Docker orchestration file
-├── README.md               # This file
+├── src/                              # Source code
+├── resources/db.changelog/migrations # Database migrations
+├── Dockerfile                        # App build instructions
+├── docker-compose.yaml               # Docker orchestration file
+├── README.md                         # This file
 ```
 
 ---
