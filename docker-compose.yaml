@@ -1,0 +1,32 @@
+services:
+  monitor-sensors-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: monitor-sensors-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-monitor-sensors:5432/sensors_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_LIQUIBASE_PASSWORD=postgres
+      - JWT_SECRET=DtLln0ulGdXd9LO9U3BEgXRV6tgloi2g
+    restart: unless-stopped
+    ports:
+      - "18080:8080"
+    depends_on:
+      - postgres-monitor-sensors
+
+  postgres-monitor-sensors:
+    image: postgres:15
+    container_name: postgres-monitor-sensors
+    environment:
+      POSTGRES_DB: sensors_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "15432:5432"
+
+volumes:
+  postgres-data:
