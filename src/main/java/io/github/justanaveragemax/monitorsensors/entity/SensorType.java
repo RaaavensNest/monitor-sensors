@@ -11,11 +11,17 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "sensor_types")
 public class SensorType {
@@ -31,6 +37,7 @@ public class SensorType {
   private String name;
 
   @OneToMany(mappedBy = "type")
+  @ToString.Exclude
   private Set<Sensor> sensors = new LinkedHashSet<>();
 
 }

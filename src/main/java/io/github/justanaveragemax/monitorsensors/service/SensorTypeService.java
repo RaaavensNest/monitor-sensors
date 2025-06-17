@@ -5,6 +5,6 @@ import java.util.Optional;
 
 public interface SensorTypeService {
 
-  Optional<SensorType> findByName(String name);
+  SensorType findByNameOrThrow(String name);
 
 }

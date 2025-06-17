@@ -1,6 +1,7 @@
 package io.github.justanaveragemax.monitorsensors.util.provider.impl;
 
 import io.github.justanaveragemax.monitorsensors.repository.SensorUnitRepository;
+import io.github.justanaveragemax.monitorsensors.util.DictionaryType;
 import io.github.justanaveragemax.monitorsensors.util.provider.DictionaryProvider;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,8 @@ public class SensorUnitProvider implements DictionaryProvider {
   private final SensorUnitRepository sensorUnitRepository;
 
   @Override
-  public String getDictionaryName() {
-    return "unit";
+  public DictionaryType getDictionaryType() {
+    return DictionaryType.SENSOR_UNIT;
   }
 
   @Override

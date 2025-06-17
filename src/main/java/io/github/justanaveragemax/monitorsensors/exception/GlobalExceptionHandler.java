@@ -3,6 +3,7 @@ package io.github.justanaveragemax.monitorsensors.exception;
 import io.github.justanaveragemax.monitorsensors.dto.FieldViolationDto;
 import io.github.justanaveragemax.monitorsensors.dto.resposnse.ApplicationErrorResponse;
 import io.github.justanaveragemax.monitorsensors.dto.resposnse.ValidationErrorResponse;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,6 +21,12 @@ public class GlobalExceptionHandler {
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public ResponseEntity<ApplicationErrorResponse> handleInternalError(Exception ex){
     return handleGenericException(HttpStatus.INTERNAL_SERVER_ERROR, ex);
+  }
+
+  @ExceptionHandler(EntityNotFoundException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public ResponseEntity<ApplicationErrorResponse> handleEntityNotFoundException(EntityNotFoundException ex){
+    return handleGenericException(HttpStatus.NOT_FOUND, ex);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)

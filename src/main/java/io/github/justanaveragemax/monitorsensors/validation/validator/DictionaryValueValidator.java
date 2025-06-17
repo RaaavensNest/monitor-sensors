@@ -7,7 +7,9 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class DictionaryValueValidator implements ConstraintValidator<ValidDictionaryValue, String> {
 
