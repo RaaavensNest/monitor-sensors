@@ -21,8 +21,9 @@ public class SensorController implements SensorApi {
   private final SensorService sensorService;
 
   @Override
-  public ResponseEntity<PagedModel<SensorResponse>> findAll(@NonNull final Pageable pageable) {
-    return ResponseEntity.ok(sensorService.findAll(pageable));
+  public ResponseEntity<PagedModel<SensorResponse>> findAll(final String name, final String model,
+                                                            @NonNull final Pageable pageable) {
+    return ResponseEntity.ok(sensorService.findAll(name, model, pageable));
   }
 
   @Override

@@ -13,12 +13,15 @@ import io.github.justanaveragemax.monitorsensors.service.SensorService;
 import io.github.justanaveragemax.monitorsensors.service.SensorTypeService;
 import io.github.justanaveragemax.monitorsensors.service.SensorUnitService;
 import io.github.justanaveragemax.monitorsensors.util.ExceptionMessage;
+import io.github.justanaveragemax.monitorsensors.util.search.SensorSearchCriteria;
+import io.github.justanaveragemax.monitorsensors.util.search.SensorSpecificationBuilder;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PagedModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,11 +40,19 @@ public class SensorServiceImpl implements SensorService {
 
   @Override
   @Transactional(readOnly = true)
-  public PagedModel<SensorResponse> findAll(@NonNull final Pageable pageable) {
-    log.info("Fetching sensors with parameters: page={}, size={}, sort='{}'", pageable.getPageNumber(),
+  public PagedModel<SensorResponse> findAll(final String name,
+                                            final String model,
+                                            @NonNull final Pageable pageable) {
+    log.info("Fetching sensors with parameters: name ={}, model ={}, page={}, size={}, sort='{}'",
+        name,
+        model,
+        pageable.getPageNumber(),
         pageable.getPageSize(), pageable.getSort());
 
-    Page<Sensor> sensors = sensorRepository.findAll(pageable);
+    final SensorSearchCriteria criteria = new SensorSearchCriteria(name, model);
+    Specification<Sensor> specification = SensorSpecificationBuilder.build(criteria);
+
+    Page<Sensor> sensors = sensorRepository.findAll(specification, pageable);
     log.info("Found {} sensors", sensors.getNumberOfElements());
 
     return new PagedModel<>(sensors.map(sensorMapper::toSensorResponse));

@@ -11,7 +11,7 @@ import org.springframework.data.web.PagedModel;
 
 public interface SensorService {
 
-  PagedModel<SensorResponse> findAll(Pageable pageable);
+  PagedModel<SensorResponse> findAll(String name, String model, Pageable pageable);
 
   SensorResponse findById(Long id);
 

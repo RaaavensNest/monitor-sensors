@@ -6,6 +6,8 @@ import io.github.justanaveragemax.monitorsensors.dto.resposnse.SensorCreationRes
 import io.github.justanaveragemax.monitorsensors.dto.resposnse.SensorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springdoc.core.converters.models.PageableAsQueryParam;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("/sensors")
 @Tag(name = "Sensors", description = "Endpoints for sensors management")
@@ -30,7 +33,23 @@ public interface SensorApi {
       summary = "Get paginated list of sensors",
       description = "Return a page of sensors based on the provided pagination parameters"
   )
-  ResponseEntity<PagedModel<SensorResponse>> findAll(@Parameter(hidden = true) Pageable pageable);
+  @Parameters({
+      @Parameter(
+          name = "name",
+          in = ParameterIn.QUERY,
+          description = "Search by name. Supports partial matching",
+          example = "Barometer"
+      ),
+      @Parameter(
+          name = "model",
+          in = ParameterIn.QUERY,
+          description = "Search by model. Supports partial matching",
+          example = "ac-23"
+      )
+  })
+  ResponseEntity<PagedModel<SensorResponse>> findAll(@RequestParam(required = false) String name,
+                                                     @RequestParam(required = false) String model,
+                                                     @Parameter(hidden = true) Pageable pageable);
 
   @GetMapping("/{id}")
   @Operation(
