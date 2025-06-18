@@ -10,6 +10,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_LIQUIBASE_PASSWORD=postgres
       - JWT_SECRET=DtLln0ulGdXd9LO9U3BEgXRV6tgloi2g
+      - INTERNAL_API_KEY=7F01A8F1234567890123456789ABCDEF
     restart: unless-stopped
     ports:
       - "18080:8080"
