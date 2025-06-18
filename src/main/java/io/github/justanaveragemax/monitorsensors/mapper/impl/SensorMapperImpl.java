@@ -7,7 +7,6 @@ import io.github.justanaveragemax.monitorsensors.dto.resposnse.SensorCreationRes
 import io.github.justanaveragemax.monitorsensors.dto.resposnse.SensorResponse;
 import io.github.justanaveragemax.monitorsensors.entity.Sensor;
 import io.github.justanaveragemax.monitorsensors.mapper.SensorMapper;
-import java.util.Objects;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 

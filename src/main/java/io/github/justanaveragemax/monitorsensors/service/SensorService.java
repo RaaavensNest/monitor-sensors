@@ -5,7 +5,6 @@ import io.github.justanaveragemax.monitorsensors.dto.request.SensorUpdateRequest
 import io.github.justanaveragemax.monitorsensors.dto.resposnse.SensorCreationResponse;
 import io.github.justanaveragemax.monitorsensors.dto.resposnse.SensorResponse;
 import io.github.justanaveragemax.monitorsensors.entity.Sensor;
-import lombok.NonNull;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedModel;
 
