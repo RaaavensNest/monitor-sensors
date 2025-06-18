@@ -15,7 +15,10 @@ public class SecurityConstants {
   };
 
   public static final String AUTHORIZATION_HEADER = "Authorization";
+  public static final String INTERNAL_API_HEADER = "X-Internal-Api-Key";
   public static final String BEARER_PREFIX = "Bearer ";
+  public static final String INTERNAL_AUTHORITY = "ROLE_INTERNAL";
+  public static final String INTERNAL_USERNAME = "internal-service";
 
   public static boolean isPublicEndpoint(String requestUri){
     final AntPathMatcher matcher = new AntPathMatcher();
