@@ -24,7 +24,7 @@ public class SensorCreationRequest {
   @NotNull(message = "Name should not be null")
   @NotBlank(message = "Name should not be empty")
   @Size(min = 3, max = 30, message = "Name should 3-30 characters in length")
-  @Schema(description = "Sensor name", example = "Barometer", requiredMode = RequiredMode.REQUIRED)
+  @Schema(description = "Sensor name", example = "Thermometer", requiredMode = RequiredMode.REQUIRED)
   private String name;
 
   @NotNull(message = "Model should not be null")
