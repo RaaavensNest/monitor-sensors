@@ -5,10 +5,7 @@ import io.github.justanaveragemax.monitorsensors.util.DictionaryType;
 import io.github.justanaveragemax.monitorsensors.validation.ValidDictionaryValue;
 import io.github.justanaveragemax.monitorsensors.validation.ValidRange;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.media.Schema.RequiredMode;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class SensorUpdateRequest {
 
   @Size(min = 3, max = 30, message = "Name should 3-30 characters in length")
-  @Schema(description = "Sensor name", example = "Barometer")
+  @Schema(description = "Sensor name", example = "Thermometer")
   private String name;
 
   @Size(max = 15, message = "Model name should be longer than 15 characters")

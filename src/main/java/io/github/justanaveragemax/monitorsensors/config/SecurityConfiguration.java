@@ -1,5 +1,6 @@
 package io.github.justanaveragemax.monitorsensors.config;
 
+import io.github.justanaveragemax.monitorsensors.security.InternalApiAuthenticationFilter;
 import io.github.justanaveragemax.monitorsensors.security.JwtAuthenticationFilter;
 import io.github.justanaveragemax.monitorsensors.security.SecurityConstants;
 import io.github.justanaveragemax.monitorsensors.security.handler.JwtAccessDeniedHandler;
@@ -27,6 +28,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfiguration {
 
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
+  private final InternalApiAuthenticationFilter internalApiAuthenticationFilter;
   private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
   private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
@@ -37,7 +39,7 @@ public class SecurityConfiguration {
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(requests -> requests
             .requestMatchers(SecurityConstants.PUBLIC_ENDPOINTS).permitAll()
-            .requestMatchers(HttpMethod.GET, "/sensors").hasAnyRole("ADMINISTRATOR", "VIEWER")
+            .requestMatchers(HttpMethod.GET, "/sensors").hasAnyRole("ADMINISTRATOR", "VIEWER", "INTERNAL")
             .anyRequest().hasRole("ADMINISTRATOR"))
         .formLogin(AbstractHttpConfigurer::disable)
         .httpBasic(AbstractHttpConfigurer::disable)
@@ -46,6 +48,7 @@ public class SecurityConfiguration {
         .exceptionHandling(ex->ex
             .accessDeniedHandler(jwtAccessDeniedHandler)
             .authenticationEntryPoint(jwtAuthenticationEntryPoint))
+        .addFilterBefore(internalApiAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
   }

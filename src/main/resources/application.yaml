@@ -27,3 +27,6 @@ jwt:
     duration: PT20M
   refresh:
     duration: P3D
+
+internal:
+  api-key: ${INTERNAL_API_KEY}

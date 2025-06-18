@@ -19,7 +19,7 @@ public class AuthenticationRequest {
   @NotNull(message = "Field 'email' should not be null")
   @NotBlank(message = "Field 'email' should not be empty")
   @Email
-  @Schema(description = "Email used during registration", example = "j.doe@example.com")
+  @Schema(description = "Email used during registration", example = "admin@example.com")
   private String email;
 
   @NotNull(message = "Field 'password' should not be null")

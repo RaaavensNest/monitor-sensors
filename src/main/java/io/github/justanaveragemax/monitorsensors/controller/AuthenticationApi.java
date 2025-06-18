@@ -1,7 +1,6 @@
 package io.github.justanaveragemax.monitorsensors.controller;
 
 import io.github.justanaveragemax.monitorsensors.dto.request.AuthenticationRequest;
-import io.github.justanaveragemax.monitorsensors.dto.request.RegistrationRequest;
 import io.github.justanaveragemax.monitorsensors.dto.resposnse.AuthenticationResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
