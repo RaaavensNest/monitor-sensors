@@ -129,3 +129,8 @@ GitHub: [https://github.com/justanaveragemax](https://github.com/justanaveragema
 
 This project is licensed under the MIT License.  
 Created as part of a technical assignment.
+
+## Very serious change
+
+This is my contribution to this awesome project.
+I am very proud of myself.
